@@ -50,19 +50,19 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 		final WebhookDAO dao = new WebhookDAO(hibernate.getSessionFactory());
 		environment.jersey().register(new WebhookResource(dao, triggerDao));
 
-		//setup new jersey servlet for admin port - fertigstellen 
+		
 
-		// create new jersey servlet
+		// create new jersey servlet for admin port
 		DropwizardResourceConfig jerseyConfig = new DropwizardResourceConfig(environment.metrics());
 		JerseyContainerHolder servletContainerHolder = new JerseyContainerHolder(new ServletContainer(jerseyConfig));
 
-		// add jersey servlet (servletContainer) to admin port (adminEnvironment) and map servlet to /admin/* 
+		// add jersey servlet to admin port (adminEnvironment) and map servlet to /admin/* 
 		environment.admin().addServlet("admin resources", servletContainerHolder.getContainer()).addMapping("/api/*");
 
 		// UnitOfWorkAwareProxyFactory - A factory for creating proxies for components that use Hibernate data access objects outside Jersey resources. 
 		//offers create() - method : Creates a new @UnitOfWork aware proxy of a class with the default constructor.
 
-		//create + regiser proxy for TriggerResource 
+		//create + register proxy for TriggerResource 
 
 		TriggerResource proxyTriggerResource = new UnitOfWorkAwareProxyFactory(hibernate) .create(TriggerResource.class, TriggerDAO.class, triggerDao);
 
