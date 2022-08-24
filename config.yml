@@ -1,4 +1,16 @@
 logging:
   level: INFO
   loggers:
-    com.github.behooked: DEBUG
+    com.github.behooked.administration: DEBUG
+    
+database:
+
+  driverClass: org.postgresql.Driver
+
+  user: schindler
+  password: sUuupAsiCr6t
+
+  url: jdbc:postgresql:webhooks
+
+  properties:
+    hibernate.hbm2ddl.auto: create
