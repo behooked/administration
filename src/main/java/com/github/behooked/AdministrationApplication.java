@@ -60,8 +60,7 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 		environment.admin().addServlet("admin resources", servletContainerHolder.getContainer()).addMapping("/api/*");
 
 		// UnitOfWorkAwareProxyFactory - A factory for creating proxies for components that use Hibernate data access objects outside Jersey resources. 
-		//offers create() - method : Creates a new @UnitOfWork aware proxy of a class with the default constructor.
-
+		
 		//create + register proxy for TriggerResource 
 
 		TriggerResource proxyTriggerResource = new UnitOfWorkAwareProxyFactory(hibernate) .create(TriggerResource.class, TriggerDAO.class, triggerDao);
