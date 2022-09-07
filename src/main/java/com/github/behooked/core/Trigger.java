@@ -87,10 +87,10 @@ public class Trigger {
 	public int hashCode() {
 		return Objects.hash(id, name);
 	}
-	
+
 	public static Trigger convertToTrigger(final TriggerJSON triggerJSON)
 	{
 		return new Trigger( triggerJSON.getName());
 	}
-	
+
 }
