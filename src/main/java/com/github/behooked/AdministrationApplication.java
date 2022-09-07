@@ -1,14 +1,18 @@
 package com.github.behooked;
 
+
+
 import org.glassfish.jersey.servlet.ServletContainer;
 
 import com.github.behooked.core.Trigger;
 import com.github.behooked.core.Webhook;
 import com.github.behooked.db.TriggerDAO;
 import com.github.behooked.db.WebhookDAO;
+import com.github.behooked.resources.NotificationResource;
 import com.github.behooked.resources.TriggerResource;
 import com.github.behooked.resources.WebhookResource;
 
+import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
@@ -19,6 +23,7 @@ import io.dropwizard.jackson.Jackson;
 import io.dropwizard.jersey.DropwizardResourceConfig;
 import io.dropwizard.jersey.jackson.JacksonMessageBodyProvider;
 import io.dropwizard.jersey.setup.JerseyContainerHolder;
+import jakarta.ws.rs.client.Client;
 
 public class AdministrationApplication extends Application<AdministrationConfiguration> {
 
@@ -50,7 +55,9 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 		final WebhookDAO dao = new WebhookDAO(hibernate.getSessionFactory());
 		environment.jersey().register(new WebhookResource(dao, triggerDao));
 
-		
+		// Client
+
+		final Client client = new JerseyClientBuilder(environment).using(configuration.getJerseyClientConfiguration()).build(getName());
 
 		// create new jersey servlet for admin port
 		DropwizardResourceConfig jerseyConfig = new DropwizardResourceConfig(environment.metrics());
@@ -60,13 +67,18 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 		environment.admin().addServlet("admin resources", servletContainerHolder.getContainer()).addMapping("/api/*");
 
 		// UnitOfWorkAwareProxyFactory - A factory for creating proxies for components that use Hibernate data access objects outside Jersey resources. 
-		
+
 		//create + register proxy for TriggerResource 
 
 		TriggerResource proxyTriggerResource = new UnitOfWorkAwareProxyFactory(hibernate) .create(TriggerResource.class, TriggerDAO.class, triggerDao);
 
 		jerseyConfig.register(proxyTriggerResource);
 
+
+
+
+
+		environment.jersey().register(new NotificationResource(dao,client));
 		//enable Jackson
 		jerseyConfig.register(new JacksonMessageBodyProvider(Jackson.newObjectMapper())); 
 		// JacksonMessageBodyProvider() : enables using Jackson to parse request entities into objects and generate response entities from objects. 

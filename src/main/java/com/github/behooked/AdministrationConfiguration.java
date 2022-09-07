@@ -1,5 +1,6 @@
 package com.github.behooked;
 
+import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.core.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 
@@ -23,6 +24,22 @@ public class AdministrationConfiguration extends Configuration {
 	@JsonProperty("database")
 	public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
 		this.database = dataSourceFactory;
+	}
+	
+	// Jersey-Client
+
+	@Valid
+	@NotNull
+	private JerseyClientConfiguration jerseyClient = new JerseyClientConfiguration();
+
+	@JsonProperty("jerseyClient")
+	public JerseyClientConfiguration getJerseyClientConfiguration() {
+		return jerseyClient;
+	}
+
+	@JsonProperty("jerseyClient")
+	public void setJerseyClientConfiguration(JerseyClientConfiguration jerseyClient) {
+		this.jerseyClient = jerseyClient;
 	}
 	
 }
