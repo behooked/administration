@@ -31,7 +31,7 @@ public class TriggerResource {
 
 	@GET
 	@UnitOfWork
-	public List<TriggerJSON> listWebhooks(){
+	public List<TriggerJSON> listTriggers(){
 		
 		return triggerDAO.findAll().stream()
 				.map(t -> TriggerJSON.from(t))

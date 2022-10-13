@@ -10,7 +10,7 @@ import jakarta.ws.rs.core.MediaType;
 public class NotificationSender {
 
 	private final Client client;
-	private static final String  DISPATCHER_URL = "http://localhost:8083/api/dispatcher";
+	private static final String  DISPATCHER_URL = "http://localhost:8084/api/dispatcher";
 
 	public NotificationSender(final Client client)
 	{

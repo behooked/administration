@@ -24,13 +24,13 @@ The last line *hibernate.hbm2ddl.auto: create* guarantees that the database tabl
 
 -POST 
 
-`curl -H "Content-Type: application/json" -X POST -d '{"url":"https://example.com", "trigger": "EventA", "secret": "mySecret" }' http://localhost:8080/webhooks-service`
+`curl -H "Content-Type: application/json" -X POST -d '{"url":"https://example.com", "trigger": "EventA", "secret": "mySecret" }' http://localhost:8085/webhooks-service`
 
 Please note that the specific event (in this case trigger:EventA) needs to be already stored in the database otherwise the request would fail. 
 
 -PUT
 
-`curl -H "Content-Type: application/json" -X PUT -d '{"id": 6, "url":"https://www.dummy.com/","trigger":"EventB","secret":"superSecret"}' http://localhost:8080/webhooks-service/6`
+`curl -H "Content-Type: application/json" -X PUT -d '{"id": 6, "url":"https://www.dummy.com/","trigger":"EventB","secret":"superSecret"}' http://localhost:8085/webhooks-service/6`
 
 -DELETE
 
@@ -38,9 +38,9 @@ Please note that the specific event (in this case trigger:EventA) needs to be al
 
 ### Accessing the Website
 
-http://localhost:8080/webhooks-service
+http://localhost:8085/webhooks-service
 
-List Webhooks by Id: http://localhost:8080/webhooks-service/{id}
+List Webhooks by Id: http://localhost:8085/webhooks-service/{id}
 
 ### Accessing private Endpoint
 The application's admin port can be used to administrate triggers. CRUD functions can be called.
