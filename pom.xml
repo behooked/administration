@@ -61,6 +61,12 @@
 			<artifactId>postgresql</artifactId>
 			<version>42.4.0</version>
 		</dependency>
+		
+		<!-- tests -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
