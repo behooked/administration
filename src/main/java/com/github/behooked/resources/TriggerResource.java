@@ -9,6 +9,7 @@ import com.github.behooked.db.TriggerDAO;
 
 import io.dropwizard.hibernate.UnitOfWork;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.ClientErrorException;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
@@ -50,7 +51,7 @@ public class TriggerResource {
 	
 	 @POST
 	 @UnitOfWork
-	    public TriggerJSON createTrigger(@Valid final TriggerJSON triggerJson)
+	    public TriggerJSON createTrigger( @Valid final TriggerJSON triggerJson)
 	    {
 		 
 		 if ((triggerJson.getName() == null))

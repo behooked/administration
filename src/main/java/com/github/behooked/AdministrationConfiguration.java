@@ -42,4 +42,18 @@ public class AdministrationConfiguration extends Configuration {
 		this.jerseyClient = jerseyClient;
 	}
 	
+	// isTestRun
+	
+		private boolean testRun = false;
+		
+		@JsonProperty
+		public boolean isTestRun() {
+			return testRun;
+		}
+		
+		@JsonProperty
+		public void setTestRun(boolean testRun) {
+			this.testRun = testRun;
+		}
+	
 }
