@@ -13,6 +13,8 @@ import com.github.behooked.resources.TriggerResource;
 import com.github.behooked.resources.WebhookResource;
 
 import io.dropwizard.client.JerseyClientBuilder;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
@@ -45,6 +47,8 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 
 	@Override
 	public void initialize(final Bootstrap<AdministrationConfiguration> bootstrap) {
+		bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(
+				bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor(false)));
 		bootstrap.addBundle(hibernate);
 	}
 
@@ -74,7 +78,7 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 
 		jerseyConfig.register(proxyTriggerResource);
 
-	
+
 
 		// create + register proxy for NotificationResource
 
@@ -88,7 +92,7 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 		NotificationResource proxyNotificationResource = new UnitOfWorkAwareProxyFactory(hibernate) .create(NotificationResource.class, classArray, constructorArguments);
 
 		jerseyConfig.register(proxyNotificationResource);
-		
+
 		//enable Jackson
 		jerseyConfig.register(new JacksonMessageBodyProvider(Jackson.newObjectMapper())); 
 		// JacksonMessageBodyProvider() : enables using Jackson to parse request entities into objects and generate response entities from objects. 

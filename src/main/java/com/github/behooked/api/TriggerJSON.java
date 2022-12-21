@@ -1,12 +1,21 @@
 package com.github.behooked.api;
 
+
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.behooked.core.Trigger;
 
-public class TriggerJSON {
+import jakarta.validation.constraints.NotEmpty;
 
+
+
+
+
+public class TriggerJSON {
+    
 	private long id;
+    
 	private String name;
 
 

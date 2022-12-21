@@ -1,0 +1,6 @@
+{
+    "id": "1",
+    "url": "www.test.com",
+    "trigger": "trigger",
+    "secret": "mySecret"
+}

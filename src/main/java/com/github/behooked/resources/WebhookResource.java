@@ -50,7 +50,7 @@ public class WebhookResource {
 
 		return webhookDAO.findAll().stream()
 				.map(w -> WebhookJSON.from(w))
-				.collect(Collectors.toList());  // returns list of webhooks
+				.collect(Collectors.toList());  
 	}
 
 
