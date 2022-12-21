@@ -62,42 +62,42 @@ public class NotificationResource {
 			LOGGER.info(String.format("No registered Webhooks for this event. EventId was: %s", eventId));
 		}
 		else
-			
+
 		{
 
 			LOGGER.info(String.format("------------Received a notification from Dispatcher. Dispatcher requests client-data for the following event: EventId was: %s -------------------", eventId));
 
+			selectClientData(mapper,arrayClientData,listWebhooks);
 
-			// select client-data from webhooks and convert it to JSON
-			for (Webhook w : listWebhooks) {
+			int length = arrayClientData.size();
+			LOGGER.info(String.format("Requested client-data has been selected. Number of entries found: : %s", length));
 
-				ObjectNode clientDataJSON= mapper.createObjectNode();
-
-				LOGGER.info(String.format("Check if webhook-list is not empty: First client-url was: %s", w.getUrl()));
-				clientDataJSON.put("url", w.getUrl());
-
-				clientDataJSON.put("secret", w.getSecret());
-
-				arrayClientData.add(clientDataJSON);
-				int length = arrayClientData.size();
-
-				// TEST!!!!!! Logger info
-				LOGGER.info(String.format("Requested client-data has been selected. Number of entries found: : %s", length));
-			
-
-			}
-
-			// send clientData + eventId to dispatcher 
-			notificationSender.sendNotification(arrayClientData, eventId);
-			LOGGER.info(String.format("Client-Data has been send to Dispatcher. EventId was: %s", eventId));
-
-			arrayClientData.removeAll();
 
 		}
 
-	}           
+		// send clientData + eventId to dispatcher 
+		notificationSender.sendNotification(arrayClientData, eventId);
+		LOGGER.info(String.format("Client-Data has been send to Dispatcher. EventId was: %s", eventId));
+
+		arrayClientData.removeAll();
+
+	}
 
 
 
+	public void selectClientData (ObjectMapper mapper, ArrayNode arrayClientData, List<Webhook> listWebhooks) {
 
+
+		for (Webhook w : listWebhooks) {
+
+			ObjectNode clientDataJSON= mapper.createObjectNode();
+
+			clientDataJSON.put("url", w.getUrl());
+
+			clientDataJSON.put("secret", w.getSecret());
+
+			arrayClientData.add(clientDataJSON);
+
+		}
+	}
 }
