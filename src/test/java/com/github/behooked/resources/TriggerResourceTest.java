@@ -26,7 +26,6 @@ import com.github.behooked.db.TriggerDAO;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
 import io.dropwizard.testing.junit5.ResourceExtension;
 import jakarta.ws.rs.client.Entity;
-import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -92,9 +91,6 @@ public class TriggerResourceTest {
 		void createTrigger() {
 
 			when(TRIGGER_DAO.create(any(Trigger.class))).thenReturn(trigger);
-			
-			WebTarget test = EXT.target("/triggers");
-			System.out.println("WebTarget ist: " +test);
 
 			final Response response = EXT.target("/triggers")  
 					.request(MediaType.APPLICATION_JSON_TYPE)

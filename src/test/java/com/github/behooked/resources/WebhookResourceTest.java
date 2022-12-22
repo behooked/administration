@@ -17,8 +17,6 @@ import org.mockito.Mockito;
 import com.github.behooked.db.WebhookDAO;
 import com.github.behooked.db.TriggerDAO;
 import com.github.behooked.core.Webhook;
-import com.github.behooked.AdministrationApplication;
-import com.github.behooked.AdministrationConfiguration;
 import com.github.behooked.api.WebhookJSON;
 import com.github.behooked.core.Trigger;
 
@@ -30,9 +28,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import io.dropwizard.testing.ResourceHelpers;
-import io.dropwizard.testing.junit5.DropwizardAppExtension;
 import io.dropwizard.testing.junit5.ResourceExtension;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.MediaType;
@@ -51,9 +46,6 @@ public class WebhookResourceTest {
 	private Trigger trigger;
 	private WebhookJSON webhookJSON;
 
-	private static DropwizardAppExtension<AdministrationConfiguration> APP= new DropwizardAppExtension<>(
-			AdministrationApplication.class, ResourceHelpers.resourceFilePath("test-config.yml"));
-
 	@BeforeEach
 	void setUp()
 	{
@@ -63,9 +55,9 @@ public class WebhookResourceTest {
 		webhook.setUrl("https://example.org");
 		webhook.setTrigger(trigger);
 		webhook.setSecret("superSecret");
-        
+
 		webhookJSON = new WebhookJSON(1,"https://example.org", "trigger","superSecret");
-		
+
 	}
 
 	@AfterEach
@@ -87,19 +79,20 @@ public class WebhookResourceTest {
 
 	}
 
-	@Test void listWebhooks() { 
-      
+	@Test
+	void listWebhooks() { 
+
 		List<Webhook> list = new ArrayList<Webhook>();
 
 		list.add(webhook);
 		when(DAO.findAll()).thenReturn(list);
 
 		final Response response = EXT.target("/webhooks-service").request() .get();
-	
+
 		verify(DAO,Mockito.times(1)).findAll(); 
 		assertThat(response.getStatusInfo(),is(Response.Status.OK));
 	}
-	
+
 	@Test
 	void getWebhookByIdSuccess() {
 		when(DAO.findById(1L)).thenReturn(Optional.of(webhook));
@@ -160,5 +153,5 @@ public class WebhookResourceTest {
 		assertThat(response.getStatusInfo(),is(Response.Status.NO_CONTENT)); 
 	}
 
-	
+
 }
