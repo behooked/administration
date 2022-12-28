@@ -41,9 +41,13 @@ public class TriggerDAO extends AbstractDAO<Trigger> {
 	public Optional<Trigger> findById(Long id) {
 		return Optional.ofNullable(get(id));
 	}
+	
+	public void update(final Trigger trigger)
+	{
+		currentSession().persist(trigger);
+	}
 
-
-	public void delete(Trigger trigger){
+	public void delete(final Trigger trigger){
 		currentSession().delete(trigger);
 	}	
 

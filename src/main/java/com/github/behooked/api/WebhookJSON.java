@@ -4,11 +4,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.behooked.core.Webhook;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class WebhookJSON {
 
 	private long id;
+	@NotEmpty
 	private String url;
+	@NotEmpty
 	private String trigger;
+	@NotEmpty
 	private String secret;
 
 	@JsonCreator

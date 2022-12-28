@@ -1,5 +1,4 @@
 package com.github.behooked.resources;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import com.github.behooked.core.Trigger;
 import com.github.behooked.core.Webhook;
+
 
 public class NotificationResourceTest {
 
@@ -27,6 +26,7 @@ public class NotificationResourceTest {
 		dataSetEntry.put("secret", "seeecret");
 		testClientData.add(dataSetEntry);
 
+
 		// create parameter
 		final ArrayNode clientData= mapper.createArrayNode();
 		Trigger trigger = new Trigger("name");
@@ -38,10 +38,6 @@ public class NotificationResourceTest {
 
 		assertThat(clientData).isEqualTo(testClientData);
 	}
-
-
-
-
 
 
 }
