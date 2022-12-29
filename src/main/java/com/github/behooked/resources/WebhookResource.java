@@ -1,6 +1,7 @@
 package com.github.behooked.resources;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.codahale.metrics.annotation.Metered;
@@ -26,7 +27,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("/webhooks-service")
-//@Produces(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes({MediaType.APPLICATION_JSON})
 
@@ -71,15 +71,22 @@ public class WebhookResource {
 	public WebhookJSON createWebhook(@Valid final WebhookJSON webhookJson)
 	{
 		final Trigger trigger = triggerDAO.findByName(webhookJson.getTrigger());
+		
+		if (trigger == null)
+		{
+			throw new ClientErrorException("No such trigger. Please choose a valid trigger. ", 409);
+		}
 		final Webhook webhook = Webhook.convertToWebhook(webhookJson, trigger);
 		final Webhook createdWebhook = webhookDAO.create(webhook);
 		return WebhookJSON.from(createdWebhook);
 	}
 
+	
+	
 	@PUT
 	@Path("{id}")
 	@UnitOfWork
-	public void updateWebhook(@PathParam("id") final long id, final WebhookJSON newWebhook)
+	public void updateWebhook(@PathParam("id") final long id, @Valid final WebhookJSON newWebhook)
 	{
 		final Webhook webhookToUpdate= findSafely(id);
 
@@ -89,6 +96,7 @@ public class WebhookResource {
 		}
 
 		final Trigger trigger = triggerDAO.findByName(newWebhook.getTrigger());
+		
 		webhookToUpdate.setTrigger(trigger);
 		webhookToUpdate.setSecret(newWebhook.getSecret());
 		webhookToUpdate.setUrl(newWebhook.getUrl());

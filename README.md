@@ -34,7 +34,7 @@ Please note that the specific event (in this case trigger:EventA) needs to be al
 
 -DELETE
 
-`curl -X DELETE "http://localhost:8080/webhooks-service/1"` 
+`curl -X DELETE "http://localhost:8085/webhooks-service/1"` 
 
 ### Accessing the Website
 

@@ -85,7 +85,7 @@ public class NotificationResource {
 
 
 
-	public void selectClientData (ObjectMapper mapper, ArrayNode arrayClientData, List<Webhook> listWebhooks) {
+	public static void selectClientData (ObjectMapper mapper, ArrayNode arrayClientData, List<Webhook> listWebhooks) {
 
 
 		for (Webhook w : listWebhooks) {
