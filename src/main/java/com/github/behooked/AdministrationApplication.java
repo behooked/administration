@@ -4,6 +4,7 @@ package com.github.behooked;
 
 import org.glassfish.jersey.servlet.ServletContainer;
 
+import com.github.behooked.client.NotificationSender;
 import com.github.behooked.core.Trigger;
 import com.github.behooked.core.Webhook;
 import com.github.behooked.db.TriggerDAO;
@@ -81,13 +82,13 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 
 
 		// create + register proxy for NotificationResource
-
+        final NotificationSender notificationSender = new NotificationSender(client);
 		Class<?> [] classArray = new Class<?>[2];
 		classArray[0] = WebhookDAO.class;
-		classArray[1]= Client.class;
+		classArray[1]= NotificationSender.class;
 		Object [] constructorArguments = new Object [2];
 		constructorArguments[0] = dao;
-		constructorArguments[1] = client;
+		constructorArguments[1] = notificationSender;
 
 		NotificationResource proxyNotificationResource = new UnitOfWorkAwareProxyFactory(hibernate) .create(NotificationResource.class, classArray, constructorArguments);
 
