@@ -1,11 +1,12 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.github.behooked.AdministrationApplication;
 import com.github.behooked.AdministrationConfiguration;
 import com.github.behooked.api.TriggerJSON;
 import com.github.behooked.api.WebhookJSON;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
 import io.dropwizard.testing.ResourceHelpers;
 import io.dropwizard.testing.junit5.DropwizardAppExtension;
 import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
@@ -49,8 +50,8 @@ public class IntegrationTest {
 		assertThat(postedWebhook.getUrl()).isEqualTo("https://example.org");
 		assertThat(postedWebhook.getTrigger()).isEqualTo(postedTrigger.getName());
 		assertThat(postedWebhook.getSecret()).isEqualTo("dummySecret");   
-
-
+		
 	}
+	
 
 }

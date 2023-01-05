@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,6 @@ public class NotificationResourceTest {
 	
 	private static final WebhookDAO WEBHOOK_DAO = mock(WebhookDAO.class);
 	private static final NotificationSender NOTIFICATION_SENDER= mock(NotificationSender.class);
-
 	
 	private static final ResourceExtension EXT = ResourceExtension.builder() //
 			.addResource(new NotificationResource(WEBHOOK_DAO, NOTIFICATION_SENDER)) //
@@ -100,7 +100,7 @@ public class NotificationResourceTest {
 		
 		EXT.target("/notifications").request(MediaType.APPLICATION_JSON).header("Behooked-Dispatcher-Notification-EventId",2).post(Entity.json(eventName));
 		
-		verify(NOTIFICATION_SENDER).sendNotification(any(ArrayNode.class), anyLong());
+		verify(NOTIFICATION_SENDER).sendNotification(anyString(),any(ArrayNode.class), anyLong());
 	
 	} 
 
