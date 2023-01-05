@@ -35,9 +35,9 @@ public class NotificationResource {
 	private NotificationSender notificationSender;
 
 
-	public NotificationResource(WebhookDAO webhookDao, Client client) {
+	public NotificationResource(WebhookDAO webhookDao, NotificationSender notificationSender) {
 		this.webhookDao = webhookDao; 
-		this.notificationSender = new NotificationSender(client);
+		this.notificationSender = notificationSender;
 	}   
 
 
