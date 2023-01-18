@@ -36,9 +36,9 @@ public class NotificationResourceTest {
 	
 	private static final WebhookDAO WEBHOOK_DAO = mock(WebhookDAO.class);
 	private static final NotificationSender NOTIFICATION_SENDER= mock(NotificationSender.class);
-	
+	private final static String dispatcherUrl = "http://dummyDispatcher.com";
 	private static final ResourceExtension EXT = ResourceExtension.builder() //
-			.addResource(new NotificationResource(WEBHOOK_DAO, NOTIFICATION_SENDER)) //
+			.addResource(new NotificationResource(WEBHOOK_DAO, NOTIFICATION_SENDER, dispatcherUrl)) //
 			.build();
 	
 	private Webhook webhook;

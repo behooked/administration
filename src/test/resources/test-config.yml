@@ -1,3 +1,4 @@
+dispatcherUrl: http://localhost:8085/testClient/dummyDispatcherService
 
 testRun: true
 

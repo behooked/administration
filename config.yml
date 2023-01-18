@@ -1,3 +1,5 @@
+dispatcherUrl: http://localhost:8082/events/dispatch
+
 logging:
   level: INFO
   loggers:
@@ -6,11 +8,12 @@ logging:
 database:
 
   driverClass: org.postgresql.Driver
-
-  user: schindler
+   
+  
+  user: lisa
   password: sUuupAsiCr6t
 
-  url: jdbc:postgresql:webhooks
+  url: jdbc:postgresql:administration
 
   properties:
     hibernate.hbm2ddl.auto: create
