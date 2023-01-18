@@ -83,12 +83,14 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 
 		// create + register proxy for NotificationResource
         final NotificationSender notificationSender = new NotificationSender(client);
-		Class<?> [] classArray = new Class<?>[2];
+		Class<?> [] classArray = new Class<?>[3];
 		classArray[0] = WebhookDAO.class;
 		classArray[1]= NotificationSender.class;
-		Object [] constructorArguments = new Object [2];
+		classArray[2]= String.class;
+		Object [] constructorArguments = new Object [3];
 		constructorArguments[0] = dao;
 		constructorArguments[1] = notificationSender;
+		constructorArguments[2]= configuration.getDispatcherUrl();
 
 		NotificationResource proxyNotificationResource = new UnitOfWorkAwareProxyFactory(hibernate) .create(NotificationResource.class, classArray, constructorArguments);
 

@@ -33,11 +33,14 @@ public class NotificationResource {
 
 	private WebhookDAO webhookDao;
 	private NotificationSender notificationSender;
-	private static final String  DISPATCHER_URL = "http://localhost:8084/api/dispatcher";
+	private String dispatcherUrl;
+	
+	//private static final String  DISPATCHER_URL = "http://localhost:8082/events/dispatch";
 
-	public NotificationResource(WebhookDAO webhookDao, NotificationSender notificationSender) {
+	public NotificationResource(WebhookDAO webhookDao, NotificationSender notificationSender, String dispatcherUrl) {
 		this.webhookDao = webhookDao; 
 		this.notificationSender = notificationSender;
+		this.dispatcherUrl = dispatcherUrl;
 	}   
 
 
@@ -76,7 +79,7 @@ public class NotificationResource {
 		}
 
 		// send clientData + eventId to dispatcher 
-		notificationSender.sendNotification(DISPATCHER_URL,arrayClientData, eventId);
+		notificationSender.sendNotification(dispatcherUrl,arrayClientData, eventId);
 		LOGGER.info(String.format("Client-Data has been send to Dispatcher. EventId was: %s", eventId));
 
 		arrayClientData.removeAll();

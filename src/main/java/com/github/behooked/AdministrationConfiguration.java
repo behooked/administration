@@ -9,9 +9,21 @@ import org.hibernate.validator.constraints.*;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
 
 public class AdministrationConfiguration extends Configuration {
     
+	@NotEmpty
+	String dispatcherUrl;
+	
+	public String getDispatcherUrl() {
+		return dispatcherUrl;
+	}
+
+	public void setDispatcherUrl(String dispatcherUrl) {
+		this.dispatcherUrl = dispatcherUrl;
+	}
+
 	@Valid
 	@NotNull
 	private DataSourceFactory database = new DataSourceFactory();
