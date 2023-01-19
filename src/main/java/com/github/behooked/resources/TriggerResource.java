@@ -40,7 +40,6 @@ public class TriggerResource {
 				.collect(Collectors.toList());
 	}
 
-
 	@GET
 	@Path("{name}")
 	@UnitOfWork

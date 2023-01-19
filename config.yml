@@ -1,4 +1,3 @@
-dispatcherUrl: http://localhost:8082/events/dispatch
 
 logging:
   level: INFO

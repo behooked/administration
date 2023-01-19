@@ -4,16 +4,12 @@ package com.github.behooked;
 
 import org.glassfish.jersey.servlet.ServletContainer;
 
-import com.github.behooked.client.NotificationSender;
 import com.github.behooked.core.Trigger;
 import com.github.behooked.core.Webhook;
 import com.github.behooked.db.TriggerDAO;
 import com.github.behooked.db.WebhookDAO;
-import com.github.behooked.resources.NotificationResource;
 import com.github.behooked.resources.TriggerResource;
 import com.github.behooked.resources.WebhookResource;
-
-import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
 import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.core.Application;
@@ -26,7 +22,7 @@ import io.dropwizard.jackson.Jackson;
 import io.dropwizard.jersey.DropwizardResourceConfig;
 import io.dropwizard.jersey.jackson.JacksonMessageBodyProvider;
 import io.dropwizard.jersey.setup.JerseyContainerHolder;
-import jakarta.ws.rs.client.Client;
+
 
 public class AdministrationApplication extends Application<AdministrationConfiguration> {
 
@@ -60,10 +56,6 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 		final WebhookDAO dao = new WebhookDAO(hibernate.getSessionFactory());
 		environment.jersey().register(new WebhookResource(dao, triggerDao));
 
-		// Client
-
-		final Client client = new JerseyClientBuilder(environment).using(configuration.getJerseyClientConfiguration()).build(getName());
-
 		// create new jersey servlet for admin port
 		DropwizardResourceConfig jerseyConfig = new DropwizardResourceConfig(environment.metrics());
 		JerseyContainerHolder servletContainerHolder = new JerseyContainerHolder(new ServletContainer(jerseyConfig));
@@ -79,27 +71,9 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 
 		jerseyConfig.register(proxyTriggerResource);
 
-
-
-		// create + register proxy for NotificationResource
-        final NotificationSender notificationSender = new NotificationSender(client);
-		Class<?> [] classArray = new Class<?>[3];
-		classArray[0] = WebhookDAO.class;
-		classArray[1]= NotificationSender.class;
-		classArray[2]= String.class;
-		Object [] constructorArguments = new Object [3];
-		constructorArguments[0] = dao;
-		constructorArguments[1] = notificationSender;
-		constructorArguments[2]= configuration.getDispatcherUrl();
-
-		NotificationResource proxyNotificationResource = new UnitOfWorkAwareProxyFactory(hibernate) .create(NotificationResource.class, classArray, constructorArguments);
-
-		jerseyConfig.register(proxyNotificationResource);
-
 		//enable Jackson
 		jerseyConfig.register(new JacksonMessageBodyProvider(Jackson.newObjectMapper())); 
 		// JacksonMessageBodyProvider() : enables using Jackson to parse request entities into objects and generate response entities from objects. 
 	}
-
 
 }
