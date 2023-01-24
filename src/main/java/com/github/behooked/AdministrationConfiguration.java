@@ -1,28 +1,14 @@
 package com.github.behooked;
 
-import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.core.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.*;
-
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
-import jakarta.validation.constraints.NotEmpty;
+
 
 public class AdministrationConfiguration extends Configuration {
-    
-	@NotEmpty
-	String dispatcherUrl;
-	
-	public String getDispatcherUrl() {
-		return dispatcherUrl;
-	}
-
-	public void setDispatcherUrl(String dispatcherUrl) {
-		this.dispatcherUrl = dispatcherUrl;
-	}
 
 	@Valid
 	@NotNull
@@ -37,35 +23,5 @@ public class AdministrationConfiguration extends Configuration {
 	public void setDataSourceFactory(DataSourceFactory dataSourceFactory) {
 		this.database = dataSourceFactory;
 	}
-	
-	// Jersey-Client
-
-	@Valid
-	@NotNull
-	private JerseyClientConfiguration jerseyClient = new JerseyClientConfiguration();
-
-	@JsonProperty("jerseyClient")
-	public JerseyClientConfiguration getJerseyClientConfiguration() {
-		return jerseyClient;
-	}
-
-	@JsonProperty("jerseyClient")
-	public void setJerseyClientConfiguration(JerseyClientConfiguration jerseyClient) {
-		this.jerseyClient = jerseyClient;
-	}
-	
-	// isTestRun
-	
-		private boolean testRun = false;
-		
-		@JsonProperty
-		public boolean isTestRun() {
-			return testRun;
-		}
-		
-		@JsonProperty
-		public void setTestRun(boolean testRun) {
-			this.testRun = testRun;
-		}
 	
 }

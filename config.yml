@@ -1,4 +1,3 @@
-dispatcherUrl: http://localhost:8082/events/dispatch
 
 logging:
   level: INFO
@@ -10,9 +9,9 @@ database:
   driverClass: org.postgresql.Driver
    
   
-  user: lisa
-  password: sUuupAsiCr6t
-
+  user: USER
+  password: PASSWORD
+  
   url: jdbc:postgresql:administration
 
   properties:
