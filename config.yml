@@ -9,9 +9,9 @@ database:
   driverClass: org.postgresql.Driver
    
   
-  user: lisa
-  password: sUuupAsiCr6t
-
+  user: USER
+  password: PASSWORD
+  
   url: jdbc:postgresql:administration
 
   properties:
