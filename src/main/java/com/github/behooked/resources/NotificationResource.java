@@ -51,8 +51,8 @@ public class NotificationResource {
 		else
 
 		{
-			LOGGER.info(String.format("------------Received a notification from Dispatcher. Dispatcher requests client-data for the following event: EventName was: %s -------------------", eventName));
-
+			//LOGGER.info(String.format("------------Received a notification from Dispatcher. Dispatcher requests client-data for the following event: EventName was: %s -------------------", eventName));
+			LOGGER.info("Received a notification from Dispatcher. Dispatcher requests client-data for the following event: EventName was: : {}", eventName);
 			selectClientData(mapper,clientData,listWebhooks);
 
 			//LOGGER.info(String.format("Requested client-data has been selected. Number of entries found: : %s", clientData.size()));
