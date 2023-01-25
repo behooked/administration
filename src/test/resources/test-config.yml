@@ -1,6 +1,4 @@
 
-testRun: true
-
 database:
   driverClass: org.h2.Driver
   user: sa
