@@ -89,7 +89,7 @@ public class WebhookResource {
 	{
 		final Webhook webhookToUpdate= findSafely(id);
 
-		if (!(newWebhook.getId() == id))
+		if (newWebhook.getId() != id)
 		{
 			throw new ClientErrorException("ID found in path param does not match ID found in JSON body", 409);
 		}
