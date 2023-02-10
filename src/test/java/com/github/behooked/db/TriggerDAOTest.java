@@ -24,14 +24,12 @@ public class TriggerDAOTest {
 
 
     private TriggerDAO triggerDAO;
-    private WebhookDAO webhookDAO;
 
     
     @BeforeEach
     public void setUp() {
   
         triggerDAO = new TriggerDAO(database.getSessionFactory());
-        webhookDAO = new WebhookDAO(database.getSessionFactory());
         
     }
     

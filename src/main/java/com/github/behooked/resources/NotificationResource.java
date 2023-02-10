@@ -45,17 +45,14 @@ public class NotificationResource {
 		
 		if(listWebhooks.isEmpty())
 		{
-			//LOGGER.info(String.format("No registered Webhooks for this event. EventName was: %s", eventName));
 			LOGGER.info("No registered Webhooks for this event. event-name = {} event-id = {}", eventName);
 		}
 		else
 
 		{
-			//LOGGER.info(String.format("------------Received a notification from Dispatcher. Dispatcher requests client-data for the following event: EventName was: %s -------------------", eventName));
 			LOGGER.info("Received a notification from Dispatcher. Dispatcher requests client-data for the following event: EventName was: : {}", eventName);
 			selectClientData(mapper,clientData,listWebhooks);
 
-			//LOGGER.info(String.format("Requested client-data has been selected. Number of entries found: : %s", clientData.size()));
 			LOGGER.info("Requested client-data has been selected. Number of entries found: {}", clientData.size());
 
 		}

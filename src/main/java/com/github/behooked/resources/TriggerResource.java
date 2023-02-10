@@ -10,7 +10,6 @@ import com.github.behooked.db.TriggerDAO;
 import io.dropwizard.hibernate.UnitOfWork;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import jakarta.ws.rs.ClientErrorException;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.NotFoundException;

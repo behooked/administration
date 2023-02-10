@@ -51,7 +51,6 @@ public class WebhookJsonTest {
 	}
 
 
-
 	@Test
 	public void deserializesFromJSON() throws Exception {
 		final WebhookJSON webhookJSON = new WebhookJSON(1, "www.test.com", "trigger", "mySecret");
