@@ -1,5 +1,7 @@
 # Administration
 
+The administration-service allows you to administrate triggers and webhooks. When a POST request is received from the dispatcher-service the administration-service selects the client-data for the transmitted event-name. This data includes the URL and  corresponding secret for each webhook that is registered for the respective event. The client-data is returned to the dispatcher-service via HTTP response.
+
 How to start the Administration application
 ---
 
