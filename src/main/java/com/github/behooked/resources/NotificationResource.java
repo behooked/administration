@@ -45,7 +45,7 @@ public class NotificationResource {
 		
 		if(listWebhooks.isEmpty())
 		{
-			LOGGER.info("No registered Webhooks for this event. event-name = {} event-id = {}", eventName);
+			LOGGER.info("No registered Webhooks for this event. event-name = {}", eventName);
 		}
 		else
 
