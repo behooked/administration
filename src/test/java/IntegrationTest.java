@@ -49,30 +49,8 @@ public class IntegrationTest {
 		assertThat(postedWebhook.getUrl()).isEqualTo("https://example.org");
 		assertThat(postedWebhook.getTrigger()).isEqualTo(postedTrigger.getName());
 		assertThat(postedWebhook.getSecret()).isEqualTo("dummySecret");   
-/*
-	       final Long eventId = 1l;
-			final String eventName = "eventName";
-			Response response = APP.client().target("http://localhost:8081/api").path("notifications")
-					.request(MediaType.APPLICATION_JSON).header("Behooked-Dispatcher-Notification-EventId",eventId).post(Entity.json(eventName));
 
-			assertThat(response).extracting(Response::getStatus).isEqualTo(Response.Status.NO_CONTENT.getStatusCode());
-		
 	}  
-	
-	
-	
 
-	@Test
-	void testReceiveNotification() {
-		
-        final Long eventId = 1l;
-		final String eventName = "eventName";
-		Response response = APP.client().target("http://localhost:8081/api").path("notifications")
-				.request(MediaType.APPLICATION_JSON).header("Behooked-Dispatcher-Notification-EventId",eventId).post(Entity.json(eventName));
 
-		assertThat(response).extracting(Response::getStatus).isEqualTo(Response.Status.NO_CONTENT.getStatusCode());
-	
-	}
-	*/
-	}
 }

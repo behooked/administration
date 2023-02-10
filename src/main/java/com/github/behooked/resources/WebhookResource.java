@@ -1,7 +1,6 @@
 package com.github.behooked.resources;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.codahale.metrics.annotation.Metered;

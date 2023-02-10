@@ -13,10 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
-
-
-
 
 @Entity
 @Table(name = "Trigger")
@@ -32,7 +28,7 @@ import jakarta.validation.constraints.NotEmpty;
 public class Trigger {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // generate the primary key value
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // generate primary key value
 	private long id;
 
 	@Column(name = "name", nullable = false)

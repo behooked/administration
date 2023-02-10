@@ -7,9 +7,6 @@ import com.github.behooked.core.Trigger;
 import jakarta.validation.constraints.NotEmpty;
 
 
-
-
-
 public class TriggerJSON {
     
 	private long id;

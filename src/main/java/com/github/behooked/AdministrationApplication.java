@@ -60,7 +60,7 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 		DropwizardResourceConfig jerseyConfig = new DropwizardResourceConfig(environment.metrics());
 		JerseyContainerHolder servletContainerHolder = new JerseyContainerHolder(new ServletContainer(jerseyConfig));
 
-		// add jersey servlet to admin port (adminEnvironment) and map servlet to /admin/* 
+		// add jersey servlet to admin port (adminEnvironment) and map servlet to /api/* 
 		environment.admin().addServlet("admin resources", servletContainerHolder.getContainer()).addMapping("/api/*");
 
 		// UnitOfWorkAwareProxyFactory - A factory for creating proxies for components that use Hibernate data access objects outside Jersey resources. 

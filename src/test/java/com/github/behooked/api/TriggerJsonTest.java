@@ -43,7 +43,6 @@ public class TriggerJsonTest {
 	}
 
 
-
 	@Test
 	public void deserializesFromJSON() throws Exception {
 		final TriggerJSON trigger = new TriggerJSON(1,"trigger");
