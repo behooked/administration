@@ -26,13 +26,13 @@ The last line *hibernate.hbm2ddl.auto: create* guarantees that the database tabl
 
 **Creating a webhook:**
 
-`curl -H "Content-Type: application/json" -X POST -d '{"url":"https://example.com", "trigger": "EventA", "secret": "mySecret" }' http://localhost:8085/webhooks-service`
+`curl -H "Content-Type: application/json" -X POST -d '{"url":"https://example.com", "trigger": "eventA", "secret": "mySecret" }' http://localhost:8085/webhooks-service`
 
-Please note that the specific event (in this case trigger:EventA) needs to be already stored in the database otherwise the request would fail. 
+Please note that the specific event (in this case trigger:eventA) needs to be already stored in the database otherwise the request would fail. 
 
 **Updating a webhook:**
 
-`curl -H "Content-Type: application/json" -X PUT -d '{"id": 6, "url":"https://www.dummy.com/","trigger":"EventB","secret":"superSecret"}' http://localhost:8085/webhooks-service/6`
+`curl -H "Content-Type: application/json" -X PUT -d '{"id": 6, "url":"https://www.dummy.com/","trigger":"eventA","secret":"superSecret"}' http://localhost:8085/webhooks-service/6`
 
 **Deleting a webhook:**
 
@@ -56,7 +56,7 @@ The application's admin port can be used to administrate triggers. CRUD function
 
 **Deleting a trigger:**
 
-`curl -H "Content-Type: application/json" -X DELETE -d '{"name": "EventB" }' http://localhost:8081/api/triggers/2`
+`curl -H "Content-Type: application/json" -X DELETE -d '{"name": "eventA" }' http://localhost:8081/api/triggers/2`
 
 Metrics
 ---
