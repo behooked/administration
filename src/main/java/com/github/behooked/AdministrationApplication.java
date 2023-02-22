@@ -8,6 +8,7 @@ import com.github.behooked.core.Trigger;
 import com.github.behooked.core.Webhook;
 import com.github.behooked.db.TriggerDAO;
 import com.github.behooked.db.WebhookDAO;
+import com.github.behooked.resources.NotificationResource;
 import com.github.behooked.resources.TriggerResource;
 import com.github.behooked.resources.WebhookResource;
 import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
@@ -70,6 +71,10 @@ public class AdministrationApplication extends Application<AdministrationConfigu
 		TriggerResource proxyTriggerResource = new UnitOfWorkAwareProxyFactory(hibernate) .create(TriggerResource.class, TriggerDAO.class, triggerDao);
 
 		jerseyConfig.register(proxyTriggerResource);
+		
+		NotificationResource proxyNotificationResource = new UnitOfWorkAwareProxyFactory(hibernate).create(NotificationResource.class, WebhookDAO.class, dao);
+
+		jerseyConfig.register(proxyNotificationResource);
 
 		//enable Jackson
 		jerseyConfig.register(new JacksonMessageBodyProvider(Jackson.newObjectMapper())); 
