@@ -22,19 +22,19 @@ The application's configuration file "config.yml" will have to be adjusted accor
     
 The last line *hibernate.hbm2ddl.auto: create* guarantees that the database tables will be created automatically by Hibernate.
 
-### Call CRUD Functions: 
+### Webhook API
 
--POST 
+**Creating a webhook:**
 
 `curl -H "Content-Type: application/json" -X POST -d '{"url":"https://example.com", "trigger": "EventA", "secret": "mySecret" }' http://localhost:8085/webhooks-service`
 
 Please note that the specific event (in this case trigger:EventA) needs to be already stored in the database otherwise the request would fail. 
 
--PUT
+**Updating a webhook:**
 
 `curl -H "Content-Type: application/json" -X PUT -d '{"id": 6, "url":"https://www.dummy.com/","trigger":"EventB","secret":"superSecret"}' http://localhost:8085/webhooks-service/6`
 
--DELETE
+**Deleting a webhook:**
 
 `curl -X DELETE "http://localhost:8085/webhooks-service/1"` 
 
@@ -44,9 +44,19 @@ http://localhost:8085/webhooks-service
 
 List Webhooks by Id: http://localhost:8085/webhooks-service/{id}
 
-### Accessing private Endpoint
-The application's admin port can be used to administrate triggers. CRUD functions can be called.
+### Accessing the private Endpoint
 http://localhost:8081/api/triggers
+
+### Trigger API
+The application's admin port can be used to administrate triggers. CRUD functions can be called.
+
+**Creating a trigger:** 
+
+`curl -H "Content-Type: application/json" -X POST -d '{"name":"eventA" }' http://localhost:8081/api/triggers`
+
+**Deleting a trigger:**
+
+`curl -H "Content-Type: application/json" -X DELETE -d '{"name": "EventB" }' http://localhost:8081/api/triggers/2`
 
 Metrics
 ---
