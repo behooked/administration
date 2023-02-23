@@ -48,15 +48,20 @@ Getting a webhooks by Id: http://localhost:8085/webhooks-service/{id}
 Listing triggers: http://localhost:8081/api/triggers
 
 ### Trigger API
-The application's admin port can be used to administrate triggers. CRUD functions can be called.
+The application's admin port can be used to administrate triggers. 
 
 **Creating a trigger:** 
 
 `curl -H "Content-Type: application/json" -X POST -d '{"name":"eventA" }' http://localhost:8081/api/triggers`
 
+**Updating a trigger**
+
+`curl -H "Content-Type: application/json" -X PUT -d '{"id": 3, "name":"updatedTrigger"}' http://localhost:8081/api/triggers/3`
+
 **Deleting a trigger:**
 
-`curl -H "Content-Type: application/json" -X DELETE -d '{"name": "eventA" }' http://localhost:8081/api/triggers/2`
+`curl -X DELETE "http://localhost:8081/api/triggers/1"`
+
 
 Metrics
 ---
